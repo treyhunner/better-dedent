@@ -7,7 +7,7 @@ name = "better-dedent"
 dynamic = ["version"]
 description = 'Basically textwrap.dedent with t-string support.'
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.14"
 license = "MIT"
 keywords = []
 authors = [
@@ -16,11 +16,7 @@ authors = [
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
@@ -31,8 +27,22 @@ Documentation = "https://github.com/Trey Hunner/better-dedent#readme"
 Issues = "https://github.com/Trey Hunner/better-dedent/issues"
 Source = "https://github.com/Trey Hunner/better-dedent"
 
+[[tool.hatch.envs.default.matrix]]
+python = ["3.14"]
+
+[tool.hatch.envs.hatch-test]
+dependencies = [
+  "pytest",
+  "hypothesis"
+]
+extra-args = ["-vv"]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.14"]
+
 [tool.hatch.version]
 path = "src/better_dedent/__about__.py"
+
 
 [tool.hatch.envs.types]
 extra-dependencies = [

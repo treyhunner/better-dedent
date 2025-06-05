@@ -5,10 +5,40 @@
 
 -----
 
-## Table of Contents
+Like `textwrap.dedent`, but with t-string support.
 
-- [Installation](#installation)
-- [License](#license)
+For example, running this:
+
+```python
+code = r"""
+def strip_each(lines):
+    new_lines = []
+    for line in lines:
+        new_lines.append(line.rstrip("\n"))
+    return new_lines
+""".strip("\n")
+
+text = dedent(t"""\
+    Example function:
+        {code}
+
+    That function was indented properly!""")
+print(text)
+```
+
+Would print this:
+
+```
+Example function:
+    def strip_each(lines):
+        new_lines = []
+        for line in lines:
+            new_lines.append(line.rstrip("\n"))
+        return new_lines
+
+That function was indented properly!
+```
+
 
 ## Installation
 
