@@ -27,8 +27,14 @@ Documentation = "https://github.com/Trey Hunner/better-dedent#readme"
 Issues = "https://github.com/Trey Hunner/better-dedent/issues"
 Source = "https://github.com/Trey Hunner/better-dedent"
 
-[[tool.hatch.envs.default.matrix]]
-python = ["3.14"]
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.*",
+  "/tests"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/better-dedent"]
 
 [tool.hatch.envs.hatch-test]
 dependencies = [
