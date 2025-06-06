@@ -132,7 +132,7 @@ Passing `strip_trailing=False` to `undent` will suppress trailing newline remova
 pip install better-dedent
 ```
 
-Or if you have `uv` installed and you'd like to play with it right now:
+Or if you have [uv](https://docs.astral.sh/uv/) installed and you'd like to play with it right now:
 
 ```console
 uvx --with better-dedent python
@@ -163,6 +163,24 @@ text = undent(t"""
     That indentation worked out nicely!
 """)
 print(text)
+```
+
+## Testing
+
+This project uses [hatch](https://hatch.pypa.io).
+
+To run the tests:
+
+```console
+hatch test
+```
+
+To see code coverage:
+
+```console
+hatch test --cover
+hatch run cov-html
+open htmlcov/index.html
 ```
 
 ## License
