@@ -48,6 +48,7 @@ _INDENT_BEFORE_REPLACEMENT = re.compile(
     ( [ \t]+ )      # Indentation
     .*?             # Any characters after indentation
     (?<! { )        # Previous character must NOT be {
+    (?: {{ )*       # Even number of { characters (0, 2, 4, etc.)
     { (\d+) }       # Replacement group {N} where N is an int
     """,
     flags=re.MULTILINE | re.VERBOSE,

@@ -27,28 +27,20 @@ Documentation = "https://github.com/treyhunner/better-dedent#readme"
 Issues = "https://github.com/treyhunner/better-dedent/issues"
 Source = "https://github.com/treyhunner/better-dedent"
 
-[tool.hatch.build.targets.sdist]
-exclude = [
-  "/.*",
-  "/tests"
-]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/better_dedent"]
+[tool.hatch.version]
+path = "src/better_dedent/__about__.py"
 
 [tool.hatch.envs.hatch-test]
-dependencies = [
-  "pytest",
-  "hypothesis"
+extra-dependencies = [
+  "hypothesis",
 ]
 extra-args = ["-vv"]
 
 [[tool.hatch.envs.hatch-test.matrix]]
 python = ["3.14"]
 
-[tool.hatch.version]
-path = "src/better_dedent/__about__.py"
-
+[tool.hatch.envs.default]
+python = "3.14"
 
 [tool.hatch.envs.types]
 extra-dependencies = [

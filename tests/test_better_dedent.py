@@ -290,6 +290,32 @@ class TestEdgeCases:
         result = dedent(template)
         assert result == "HelloTrey"
 
+    def test_curly_braces_before_replacement(self):
+        header = "Header"
+        body = textwrap.dedent("""\
+            First line
+            Second line""").strip()
+        template = t"""\
+            {header}:
+                {{{body}}}
+            And
+                {{{{{body}}}}}
+            End
+            False replacement: {{3}}
+        """
+        result = dedent(template)
+        expected = textwrap.dedent("""\
+            Header:
+                {First line
+                Second line}
+            And
+                {{First line
+                Second line}}
+            End
+            False replacement: {3}
+            """)
+        assert result == expected
+
     def test_interpolation_preserves_multiline_indentation_complex(self):
         code = textwrap.dedent(r"""
             def strip_each(lines):
