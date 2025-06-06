@@ -38,7 +38,7 @@ new_lines = []
 for line in lines:
     new_lines.append(line.rstrip("\n"))
 return new_lines
-
+```
 
 The problem is that f-strings immediately interpolate their replacement fields.
 
@@ -155,13 +155,14 @@ def strip_each(lines):
     return new_lines
 """.strip("\n")
 
-undent(t"""
+text = undent(t"""
     Here is some example code:
 
         {code}
 
     That indentation worked out nicely!
 """)
+print(text)
 ```
 
 ## License
