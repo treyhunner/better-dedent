@@ -4,6 +4,7 @@
 """better_dedent - textwrap.dedent, with sensible t-string support"""
 
 import re
+from string import Formatter
 import textwrap
 from string.templatelib import Interpolation, Template
 from typing import Literal
@@ -32,14 +33,8 @@ def dedent(text_or_template: Template) -> str:
         return textwrap.dedent(text_or_template)
 
 
-def _convert(value: object, conversion: Literal["a", "r", "s"] | None) -> object:
-    if conversion == "a":
-        return ascii(value)
-    elif conversion == "r":
-        return repr(value)
-    elif conversion == "s":
-        return str(value)
-    return value
+# https://discuss.python.org/t/add-convert-function-to-string-templatelib/94569/10
+_convert = classmethod(Formatter.convert_field).__get__(Formatter)
 
 
 _INDENT_BEFORE_REPLACEMENT = re.compile(
