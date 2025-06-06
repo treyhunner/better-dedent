@@ -41,6 +41,12 @@ python = ["3.14"]
 
 [tool.hatch.envs.default]
 python = "3.14"
+dependencies = [
+  "coverage[toml]",
+]
+
+[tool.hatch.envs.default.scripts]
+cov-html = "coverage html"
 
 [tool.hatch.envs.types]
 extra-dependencies = [

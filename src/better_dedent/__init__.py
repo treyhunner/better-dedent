@@ -4,10 +4,9 @@
 """better_dedent - textwrap.dedent, with sensible t-string support"""
 
 import re
-from string import Formatter
 import textwrap
+from string import Formatter
 from string.templatelib import Interpolation, Template
-from typing import Literal
 
 __all__ = ["dedent", "undent"]
 
@@ -27,10 +26,11 @@ def dedent(text_or_template: Template) -> str:
     Regular strings dedent as usual, but t-strings ensure the
     interpolated value is inserted only after dedenting.
     """
-    if isinstance(text_or_template, Template):
-        return _dedent_template(text_or_template)
-    else:
-        return textwrap.dedent(text_or_template)
+    match text_or_template:
+        case Template():
+            return _dedent_template(text_or_template)
+        case _:
+            return textwrap.dedent(text_or_template)
 
 
 # https://discuss.python.org/t/add-convert-function-to-string-templatelib/94569/10
@@ -56,15 +56,15 @@ def _dedent_template(template: Template) -> str:
     n = 0
     for item in template:
         match item:
-            case str() as string:
-                # Double-up literal { and } characters for later .format() call
-                parts.append(string.replace("{", "{{").replace("}", "}}"))
             case Interpolation(value, _, conversion, format_spec):
                 value = _convert(value, conversion)
                 value = format(value, format_spec)
                 replacements.append(value)
                 parts.append("{" + str(n) + "}")
                 n += 1
+            case _:
+                # Double-up literal { and } characters for later .format() call
+                parts.append(item.replace("{", "{{").replace("}", "}}"))
     text = dedent("".join(parts))
     for indentation, n in _INDENT_BEFORE_REPLACEMENT.findall(text):
         n = int(n)
