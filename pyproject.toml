@@ -23,9 +23,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Documentation = "https://github.com/Trey Hunner/better-dedent#readme"
-Issues = "https://github.com/Trey Hunner/better-dedent/issues"
-Source = "https://github.com/Trey Hunner/better-dedent"
+Documentation = "https://github.com/treyhunner/better-dedent#readme"
+Issues = "https://github.com/treyhunner/better-dedent/issues"
+Source = "https://github.com/treyhunner/better-dedent"
 
 [tool.hatch.build.targets.sdist]
 exclude = [
@@ -34,7 +34,7 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/better-dedent"]
+packages = ["src/better_dedent"]
 
 [tool.hatch.envs.hatch-test]
 dependencies = [
