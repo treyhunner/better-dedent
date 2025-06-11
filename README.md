@@ -5,7 +5,9 @@
 
 -----
 
-It's like `textwrap.dedent`, but with added t-string support.
+It's like `textwrap.dedent`, but with it works better.
+
+This only supports Python 3.14 (which is not yet released) because it relies on t-strings.
 
 
 ## The problem: interpolating before dedenting
@@ -104,7 +106,7 @@ Example function:
 That function was indented properly!
 ```
 
-The `undent` function will also strips a trailing newline by default:
+By default, the `undent` function will also strip a trailing newline:
 
 ```pycon
 >>> print(undent(t"""
@@ -128,11 +130,13 @@ Passing `strip_trailing=False` to `undent` will suppress trailing newline remova
 
 ## Installation
 
+You install `better-dedent` with `pip` (you'll need to be on Python 3.14):
+
 ```console
 pip install better-dedent
 ```
 
-Or if you have [uv](https://docs.astral.sh/uv/) installed and you'd like to play with it right now:
+Or if you have [uv](https://docs.astral.sh/uv/) installed and you'd like to play with it right now (Python 3.14 will be auto-installed):
 
 ```console
 uvx --with better-dedent python
