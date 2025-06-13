@@ -46,14 +46,17 @@ dependencies = [
 ]
 
 [tool.hatch.envs.default.scripts]
+cov-report = ["- coverage combine", "coverage report", "coverage xml"]
 cov-html = "coverage html"
 
-[tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
+
+[tool.hatch.envs.lint]
+dependencies = [
+  "ruff",
 ]
-[tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/better_dedent tests}"
+[tool.hatch.envs.lint.scripts]
+check = ["ruff check {args:.}", "ruff format --check {args:.}"]
+fmt = "ruff format {args:.}"
 
 [tool.coverage.run]
 source_pkgs = ["better_dedent", "tests"]
