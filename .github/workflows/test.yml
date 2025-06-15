@@ -35,8 +35,9 @@ jobs:
     - name: Generate coverage report
       run: hatch run cov-report
     
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-        fail_ci_if_error: true
+    - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: treyhunner/better-dedent
+          fail_ci_if_error: true
