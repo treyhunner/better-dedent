@@ -1,12 +1,12 @@
 # SPDX-FileCopyrightText: 2025-present Trey Hunner
 #
 # SPDX-License-Identifier: MIT
-import pytest
 import textwrap
-from string.templatelib import Template
-from hypothesis import given, strategies as st
 
-from better_dedent import dedent, undent, _convert
+from hypothesis import given
+from hypothesis import strategies as st
+
+from better_dedent import _convert, dedent, undent
 
 
 class TestDedentWithRegularStrings:
@@ -269,7 +269,7 @@ class TestEdgeCases:
         quote = "He said 'hello'"
         template = t'    Message: "{quote}"'
         result = dedent(template)
-        assert result == 'Message: "He said \'hello\'"'
+        assert result == "Message: \"He said 'hello'\""
 
     def test_tstring_with_complex_format_specs(self):
         data = {"name": "Alice", "score": 95.678}
@@ -322,8 +322,7 @@ class TestEdgeCases:
                 new_lines = []
                 for line in lines:
                     new_lines.append(line.rstrip("\n"))
-                return new_lines"""
-        ).strip("\n")
+                return new_lines""").strip("\n")
         template = t"""\
             Example function:
                 {code}
