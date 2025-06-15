@@ -2,6 +2,7 @@
 
 [![PyPI - Version](https://img.shields.io/pypi/v/better-dedent.svg)](https://pypi.org/project/better-dedent)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/better-dedent.svg)](https://pypi.org/project/better-dedent)
+[![Code Coverage](https://codecov.io/gh/treyhunner/better-dedent/graph/badge.svg?token=JkjSYTtdI5)](https://codecov.io/gh/treyhunner/better-dedent)
 
 -----
 
